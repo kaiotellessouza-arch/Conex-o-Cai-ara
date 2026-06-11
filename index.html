@@ -3,32 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conexão Caiçara - Do Campo ao Prato</title>
+    <title>Conexão Caiçara - Agro Sustentável em Pontal do Paraná</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Conexão Caiçara</h1>
-        <p>Agro Forte, Futuro Sustentável: Do produtor de Pontal do Paraná direto para você!</p>
+        <div class="header-container">
+            <h1>Conexão Caiçara</h1>
+            <p class="tagline">Agro Forte, Futuro Sustentável</p>
+            <p class="subtext">O equilíbrio perfeito entre a produção agrícola e a preservação do ecossistema costeiro de Pontal do Paraná</p>
+        </div>
     </header>
 
     <main>
-        <section id="sobre">
-            <h2>Sobre o Projeto</h2>
-            <p>Conectando a agricultura familiar e sustentável do nosso litoral com comércios e restaurantes locais.</p>
+        <!-- SEÇÃO: INTRODUÇÃO E PROBLEMÁTICA -->
+        <section id="introducao">
+            <h2>Contexto Local: O Desafio do Nosso Litoral</h2>
+            <p>Morar em <strong>Pontal do Paraná</strong> nos coloca de frente com uma realidade única: a convivência direta entre áreas urbanas, comunidades tradicionais caiçaras, a rica biodiversidade da Mata Atlântica e a zona costeira. O grande desafio atual é garantir o desenvolvimento econômico sem esgotar as nossas riquezas naturais.</p>
+            <p>A agricultura familiar da nossa região possui um papel vital na segurança alimentar. No entanto, muitos pequenos produtores enfrentam sérias dificuldades para escoar suas safras até os grandes centros consumidores locais, como hotéis, pousadas e restaurantes da orla. Esse isolamento gera desperdício de alimentos no campo e força o comércio a comprar produtos de distribuidoras distantes, aumentando a pegada de carbono devido ao longo transporte rodoviário.</p>
         </section>
 
-        <section id="produtos">
-            <h2>Produtos da Região</h2>
-            <div class="lista-produtos">
-                <!-- Vamos colocar os produtos aqui com o CSS depois -->
-                <p>Carregando produtos sustentáveis...</p>
+        <!-- SEÇÃO: O PROJETO AGRINHO -->
+        <section id="sobre-projeto">
+            <h2>A Solução Tecnológica: Como Funciona a Plataforma?</h2>
+            <p>Desenvolvido para o <strong>Concurso Agrinho 2026</strong>, o site <em>Conexão Caiçara</em> atua como uma ponte digital direta. Nós eliminamos os intermediários da cadeia de suprimentos, conectando o produtor rural familiar diretamente com o comércio gastronômico e hoteleiro de Pontal do Paraná.</p>
+            <p>Com essa tecnologia simples e acessível, o restaurante local consegue encomendar hortaliças, polpas e produtos da terra colhidos no mesmo dia. Isso garante um alimento mais fresco para o turista, gera renda justa para as famílias agrícolas e diminui o impacto ambiental do transporte (redução de quilômetros rodados e emissão de CO2).</p>
+        </section>
+
+        <!-- SEÇÃO: DIAGNÓSTICO SUSTENTÁVEL -->
+        <section id="impacto-ambiental">
+            <h2>Equilíbrio entre Produção e Ambiente</h2>
+            <p>Para alcançar um futuro verdadeiramente sustentável, a produção agrícola precisa caminhar lado a lado com a conservação. A nossa plataforma incentiva e exige dos produtores cadastrados a adoção de boas práticas agrícolas:</p>
+            <ul class="lista-sustentavel">
+                <li><strong>Proteção do Solo:</strong> Uso de adubação verde e compostagem orgânica, evitando defensivos químicos que contaminam os lençóis freáticos e os rios que deságuam em nossas praias.</li>
+                <li><strong>Manejo Consciente da Água:</strong> Sistemas de irrigação por gotejamento que reduzem o desperdício de água doce na lavoura.</li>
+                <li><strong>Preservação da Biodiversidade:</strong> Cultivos consorciados (como o palmito pupunha) que não exigem o desmatamento da Mata Atlântica nativa.</li>
+            </ul>
+        </section>
+
+        <!-- SEÇÃO: VITRINE INTERATIVA COM JAVASCRIPT -->
+        <section id="vitrine">
+            <h2>Vitrine Virtual de Produtores Locais</h2>
+            <p class="instrucao">Explore abaixo os produtos cultivados com responsabilidade socioambiental na nossa região. Use a barra de pesquisa para filtrar o que você precisa em tempo real!</p>
+            
+            <!-- Barra de pesquisa interativa -->
+            <div class="busca-container">
+                <input type="text" id="campo-busca" placeholder="Digite para buscar (ex: banana, palmito, orgânico)...">
+            </div>
+
+            <div id="lista-produtos" class="produtos-grid">
+                <!-- O JavaScript vai injetar os produtos, descrições e fotos aqui automaticamente -->
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Conexão Caiçara - Projeto para o Concurso Agrinho</p>
+        <p>&copy; 2026 Conexão Caiçara | Projeto Estudantil do Ensino Médio | Pontal do Paraná - PR</p>
+        <p class="tema-agrinho">Tema Oficial: Agro forte, futuro sustentável: equilíbrio entre produção e ambiente</p>
     </footer>
+
+    <!-- Link para a lógica do site -->
+    <script src="script.js"></script>
 </body>
 </html>
