@@ -1,186 +1,54 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conexão Caiçara - Portal Agrinho 2026</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Fonte moderna do Google para deixar o site bonito -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-</head>
-<body>
+document.addEventListener("DOMContentLoaded", function () {
+    
+    // 1. CÁLCULO DO SIMULADOR DE IMPACTO
+    const btnCalcular = document.getElementById('btn-calcular');
+    
+    if (btnCalcular) {
+        btnCalcular.addEventListener('click', function () {
+            const hectares = parseFloat(document.getElementById('hectares').value) || 1;
+            const manejo = document.getElementById('manejo').value;
 
-    <!-- NAV BAR (TOPO ACESSÍVEL) -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <span class="logo-txt">🟢 Conexão <span>Caiçara</span></span>
-            <span class="badge-agrinho">Agrinho 2026</span>
-        </div>
-    </nav>
+            let fatorCarbono = 2.5;
+            let fatorAgua = 9000;
+            let biodiversidade = "Alta";
 
-    <!-- BANNER PRINCIPAL (HERO) -->
-    <header class="hero-section">
-        <div class="hero-container">
-            <h1>Agro Forte, Futuro Sustentável</h1>
-            <p class="hero-subtext">A maior plataforma integrada de inteligência agroecológica, rastreabilidade de bioinsumos e valorização da cultura tradicional de Pontal do Paraná.</p>
-            <div class="hero-buttons">
-                <a href="#catalogo" class="btn-primary">Explorar Catálogo</a>
-                <a href="#simulador" class="btn-secondary">Simulador Eco-Impacto</a>
-            </div>
-        </div>
-    </header>
+            if (manejo === "horta") {
+                fatorCarbono = 1.2;
+                fatorAgua = 4000;
+                biodiversidade = "Média";
+            } else if (manejo === "hidro") {
+                fatorCarbono = 0.5;
+                fatorAgua = 15000;
+                biodiversidade = "Controlada";
+            }
 
-    <!-- PAINEL DE NÚMEROS (Destaques rápidos com ícones simples) -->
-    <section class="painel-estatisticas">
-        <div class="estatistica-item">
-            <span class="num">142</span>
-            <span class="txt">Famílias Atendidas</span>
-        </div>
-        <div class="estatistica-item">
-            <span class="num">450k m²</span>
-            <span class="txt">Mata Monitorada</span>
-        </div>
-        <div class="estatistica-item">
-            <span class="num">84 Ton</span>
-            <span class="txt">Resíduos Reciclados</span>
-        </div>
-    </section>
+            // Atualiza os números no HTML de forma bonita
+            document.getElementById('res-carbono').textContent = (hectares * fatorCarbono).toFixed(1) + " Ton";
+            document.getElementById('res-agua').textContent = (hectares * fatorAgua).toLocaleString('pt-BR') + " L";
+            document.getElementById('res-biodiv').textContent = biodiversidade;
+        });
+    }
 
-    <!-- CONTEÚDO PRINCIPAL -->
-    <main class="main-container">
-        
-        <!-- SEÇÃO 1: O MANIFESTO (Visual limpo e espaçado) -->
-        <section class="secao-info">
-            <div class="section-header">
-                <span class="sub-titulo">Nossa Filosofia</span>
-                <h2>O Manifesto do Equilíbrio: Alimento Forte, Floresta em Pé</h2>
-            </div>
-            
-            <div class="grid-dois-blocos">
-                <div class="bloco-texto">
-                    <p>Desenvolvido em <strong>Pontal do Paraná</strong>, o projeto Conexão Caiçara prova que o agronegócio e a agricultura familiar do litoral não precisam competir com a natureza. A Mata Atlântica e a restinga deixam de ser restrições e passam a ser os maiores ativos biológicos do produtor.</p>
-                    <p>Substituímos a cadeia de insumos químicos por um ciclo perfeito de economia circular costeira: o que sobra da atividade pesqueira vira a base de fertilização de lavouras agroflorestais altamente produtivas.</p>
-                </div>
-                <div class="bloco-destaque-verde">
-                    <h3>Nossos Três Compromissos:</h3>
-                    <ul class="lista-custom">
-                        <li><strong>Preservação de Mananciais:</strong> Proteção total de rios e áreas de manguezal.</li>
-                        <li><strong>Soberania Alimentar:</strong> Alimento limpo de verdade para escolas e comunidades.</li>
-                        <li><strong>Rastreabilidade Digital:</strong> Tecnologia para garantir a origem justa de cada item.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+    // 2. FILTRO DE BUSCA DO CATÁLOGO
+    const campoBusca = document.getElementById('campo-busca');
+    
+    if (campoBusca) {
+        campoBusca.addEventListener('input', function () {
+            const termo = campoBusca.value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.produto-card');
 
-        <!-- SEÇÃO 2: SIMULADOR INTERATIVO (Fácil de ler e mexer) -->
-        <section id="simulador" class="secao-simulador">
-            <div class="section-header text-center">
-                <span class="sub-titulo">Ferramenta Interativa</span>
-                <h2>Simulador de Impacto Agroecológico</h2>
-                <p class="section-intro">Veja os benefícios reais trocando a agricultura química pelas técnicas do nosso projeto.</p>
-            </div>
+            cards.forEach(card => {
+                const titulo = card.querySelector('h3').textContent.toLowerCase();
+                const desc = card.querySelector('p').textContent.toLowerCase();
+                const regiao = card.querySelector('.tag-regiao').textContent.toLowerCase();
+                const tag = card.querySelector('.produto-tag').textContent.toLowerCase();
 
-            <div class="simulador-box">
-                <div class="simulador-inputs">
-                    <div class="input-group">
-                        <label for="hectares">Tamanho da Área de Plantio (Hectares):</label>
-                        <input type="number" id="hectares" value="5" min="1" max="100">
-                    </div>
-                    <div class="input-group">
-                        <label for="manejo">Tipo de Manejo Principal:</label>
-                        <select id="manejo">
-                            <option value="saf">Sistema Agroflorestal (SAF)</option>
-                            <option value="horta">Horta Orgânica Comunitária</option>
-                            <option value="hidro">Hidroponia Circular</option>
-                        </select>
-                    </div>
-                    <button id="btn-calcular" class="btn-calculadora">Atualizar Métricas de Impacto</button>
-                </div>
-
-                <div class="simulador-resultados">
-                    <div class="resultado-card">
-                        <span class="res-num" id="res-carbono">12.5 Ton</span>
-                        <span class="res-label">Carbono Sequestrado / Ano</span>
-                    </div>
-                    <div class="resultado-card">
-                        <span class="res-num" id="res-agua">45.000 L</span>
-                        <span class="res-label">Água Economizada / Mês</span>
-                    </div>
-                    <div class="resultado-card">
-                        <span class="res-num" id="res-biodiv">Alta</span>
-                        <span class="res-label">Retorno de Polinizadores</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SEÇÃO 3: CATÁLOGO DE PRODUTOS DE VERDADE -->
-        <section id="catalogo" class="secao-catalogo">
-            <div class="section-header">
-                <span class="sub-titulo">E-Commerce Social</span>
-                <h2>Catálogo de Produtos e Rastreabilidade</h2>
-                <p class="section-intro">O banco de dados renderiza e filtra os elementos em tempo real através do arquivo JavaScript.</p>
-            </div>
-
-            <!-- BARRA DE BUSCA CENTRALIZADA -->
-            <div class="busca-wrapper">
-                <input type="text" id="campo-busca" placeholder="🔎 Pesquise por produto, região ou selo (ex: Shangri-lá, Mel, Orgânico)...">
-            </div>
-
-            <!-- GRID DOS PRODUTOS REORGANIZADO -->
-            <div class="produtos-grid" id="lista-produtos">
-                
-                <!-- CARD 1 -->
-                <div class="produto-card">
-                    <div class="img-wrapper">
-                        <img class="produto-foto" src="https://unsplash.com" alt="Palmito Pupunha">
-                        <span class="tag-regiao">Região: Shangri-lá</span>
-                    </div>
-                    <div class="produto-info">
-                        <span class="produto-tag tag-sustentavel">Manejo Sustentável</span>
-                        <h3>Palmito Pupunha Premium</h3>
-                        <p>Extraído de palmeiras cultivadas sem desmatamento. Garante a sobrevivência das aves nativas que se alimentam dos frutos das palmeiras silvestres.</p>
-                        <div class="card-footer">
-                            <span class="selo">Selo Orgânico</span>
-                            <button class="btn-negociar">Negociar Direto</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CARD 2 -->
-                <div class="produto-card">
-                    <div class="img-wrapper">
-                        <img class="produto-foto" src="https://unsplash.com" alt="Banana Orgânica">
-                        <span class="tag-regiao">Região: Macacos</span>
-                    </div>
-                    <div class="produto-info">
-                        <span class="produto-tag tag-fruta">Frutas Tropicais</span>
-                        <h3>Banana Caturra Agroflorestal</h3>
-                        <p>Nossas bananas crescem integradas à mata nativa, aproveitando a adubação natural das folhas que caem no chão da floresta. Sabor doce e puro.</p>
-                        <div class="card-footer">
-                            <span class="selo">Premium</span>
-                            <button class="btn-negociar">Negociar Direto</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CARD 3 -->
-                <div class="produto-card">
-                    <div class="img-wrapper">
-                        <img class="produto-foto" src="https://unsplash.com" alt="Hortaliças">
-                        <span class="tag-regiao">Região: Ipanema</span>
-                    </div>
-                    <div class="produto-info">
-                        <span class="produto-tag tag-horta">Hortaliças</span>
-                        <h3>Mix de Folhas Hidropônicas</h3>
-                        <p>Cultivadas em estufas protegidas com circuito fechado de água. Economia gigante de recursos hídricos e folhas crocantes de verdade.</p>
-                        <div class="card-footer">
-                            <span class="selo">Agroecológico</span>
-                            <button class="btn-negociar">Negociar Direto</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CARD 4 -->
+                if (titulo.includes(termo) || desc.includes(termo) || regiao.includes(termo) || tag.includes(termo)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        });
+    }
+});
