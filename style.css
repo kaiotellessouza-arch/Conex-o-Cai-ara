@@ -1,186 +1,461 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conexão Caiçara - Portal Agrinho 2026</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Fonte moderna do Google para deixar o site bonito -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-</head>
-<body>
+### 2. O Novo `style.css` (Visual Clean, Moderno e Espaçado)
+```css
+/* RESET DE ESTILOS E FONTES MODERNAS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
 
-    <!-- NAV BAR (TOPO ACESSÍVEL) -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <span class="logo-txt">🟢 Conexão <span>Caiçara</span></span>
-            <span class="badge-agrinho">Agrinho 2026</span>
-        </div>
-    </nav>
+html {
+    scroll-behavior: smooth;
+}
 
-    <!-- BANNER PRINCIPAL (HERO) -->
-    <header class="hero-section">
-        <div class="hero-container">
-            <h1>Agro Forte, Futuro Sustentável</h1>
-            <p class="hero-subtext">A maior plataforma integrada de inteligência agroecológica, rastreabilidade de bioinsumos e valorização da cultura tradicional de Pontal do Paraná.</p>
-            <div class="hero-buttons">
-                <a href="#catalogo" class="btn-primary">Explorar Catálogo</a>
-                <a href="#simulador" class="btn-secondary">Simulador Eco-Impacto</a>
-            </div>
-        </div>
-    </header>
+body {
+    background-color: #f8fafc; /* Fundo cinza/azul bem clarinho que não cansa a vista */
+    color: #1e293b;
+    line-height: 1.6;
+}
 
-    <!-- PAINEL DE NÚMEROS (Destaques rápidos com ícones simples) -->
-    <section class="painel-estatisticas">
-        <div class="estatistica-item">
-            <span class="num">142</span>
-            <span class="txt">Famílias Atendidas</span>
-        </div>
-        <div class="estatistica-item">
-            <span class="num">450k m²</span>
-            <span class="txt">Mata Monitorada</span>
-        </div>
-        <div class="estatistica-item">
-            <span class="num">84 Ton</span>
-            <span class="txt">Resíduos Reciclados</span>
-        </div>
-    </section>
+/* NAVBAR FIXA NO TOPO */
+.navbar {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid #e2e8f0;
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(5px);
+}
 
-    <!-- CONTEÚDO PRINCIPAL -->
-    <main class="main-container">
-        
-        <!-- SEÇÃO 1: O MANIFESTO (Visual limpo e espaçado) -->
-        <section class="secao-info">
-            <div class="section-header">
-                <span class="sub-titulo">Nossa Filosofia</span>
-                <h2>O Manifesto do Equilíbrio: Alimento Forte, Floresta em Pé</h2>
-            </div>
-            
-            <div class="grid-dois-blocos">
-                <div class="bloco-texto">
-                    <p>Desenvolvido em <strong>Pontal do Paraná</strong>, o projeto Conexão Caiçara prova que o agronegócio e a agricultura familiar do litoral não precisam competir com a natureza. A Mata Atlântica e a restinga deixam de ser restrições e passam a ser os maiores ativos biológicos do produtor.</p>
-                    <p>Substituímos a cadeia de insumos químicos por um ciclo perfeito de economia circular costeira: o que sobra da atividade pesqueira vira a base de fertilização de lavouras agroflorestais altamente produtivas.</p>
-                </div>
-                <div class="bloco-destaque-verde">
-                    <h3>Nossos Três Compromissos:</h3>
-                    <ul class="lista-custom">
-                        <li><strong>Preservação de Mananciais:</strong> Proteção total de rios e áreas de manguezal.</li>
-                        <li><strong>Soberania Alimentar:</strong> Alimento limpo de verdade para escolas e comunidades.</li>
-                        <li><strong>Rastreabilidade Digital:</strong> Tecnologia para garantir a origem justa de cada item.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        <!-- SEÇÃO 2: SIMULADOR INTERATIVO (Fácil de ler e mexer) -->
-        <section id="simulador" class="secao-simulador">
-            <div class="section-header text-center">
-                <span class="sub-titulo">Ferramenta Interativa</span>
-                <h2>Simulador de Impacto Agroecológico</h2>
-                <p class="section-intro">Veja os benefícios reais trocando a agricultura química pelas técnicas do nosso projeto.</p>
-            </div>
+.logo-txt {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #0f2e12;
+}
 
-            <div class="simulador-box">
-                <div class="simulador-inputs">
-                    <div class="input-group">
-                        <label for="hectares">Tamanho da Área de Plantio (Hectares):</label>
-                        <input type="number" id="hectares" value="5" min="1" max="100">
-                    </div>
-                    <div class="input-group">
-                        <label for="manejo">Tipo de Manejo Principal:</label>
-                        <select id="manejo">
-                            <option value="saf">Sistema Agroflorestal (SAF)</option>
-                            <option value="horta">Horta Orgânica Comunitária</option>
-                            <option value="hidro">Hidroponia Circular</option>
-                        </select>
-                    </div>
-                    <button id="btn-calcular" class="btn-calculadora">Atualizar Métricas de Impacto</button>
-                </div>
+.logo-txt span {
+    color: #16a34a;
+}
 
-                <div class="simulador-resultados">
-                    <div class="resultado-card">
-                        <span class="res-num" id="res-carbono">12.5 Ton</span>
-                        <span class="res-label">Carbono Sequestrado / Ano</span>
-                    </div>
-                    <div class="resultado-card">
-                        <span class="res-num" id="res-agua">45.000 L</span>
-                        <span class="res-label">Água Economizada / Mês</span>
-                    </div>
-                    <div class="resultado-card">
-                        <span class="res-num" id="res-biodiv">Alta</span>
-                        <span class="res-label">Retorno de Polinizadores</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+.badge-agrinho {
+    background-color: #fef08a;
+    color: #713f12;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
 
-        <!-- SEÇÃO 3: CATÁLOGO DE PRODUTOS DE VERDADE -->
-        <section id="catalogo" class="secao-catalogo">
-            <div class="section-header">
-                <span class="sub-titulo">E-Commerce Social</span>
-                <h2>Catálogo de Produtos e Rastreabilidade</h2>
-                <p class="section-intro">O banco de dados renderiza e filtra os elementos em tempo real através do arquivo JavaScript.</p>
-            </div>
+/* BANNER PRINCIPAL (HERO) MODERNIZADO */
+.hero-section {
+    background: linear-gradient(135deg, #062411 0%, #0f401f 100%);
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+}
 
-            <!-- BARRA DE BUSCA CENTRALIZADA -->
-            <div class="busca-wrapper">
-                <input type="text" id="campo-busca" placeholder="🔎 Pesquise por produto, região ou selo (ex: Shangri-lá, Mel, Orgânico)...">
-            </div>
+.hero-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
 
-            <!-- GRID DOS PRODUTOS REORGANIZADO -->
-            <div class="produtos-grid" id="lista-produtos">
-                
-                <!-- CARD 1 -->
-                <div class="produto-card">
-                    <div class="img-wrapper">
-                        <img class="produto-foto" src="https://unsplash.com" alt="Palmito Pupunha">
-                        <span class="tag-regiao">Região: Shangri-lá</span>
-                    </div>
-                    <div class="produto-info">
-                        <span class="produto-tag tag-sustentavel">Manejo Sustentável</span>
-                        <h3>Palmito Pupunha Premium</h3>
-                        <p>Extraído de palmeiras cultivadas sem desmatamento. Garante a sobrevivência das aves nativas que se alimentam dos frutos das palmeiras silvestres.</p>
-                        <div class="card-footer">
-                            <span class="selo">Selo Orgânico</span>
-                            <button class="btn-negociar">Negociar Direto</button>
-                        </div>
-                    </div>
-                </div>
+.hero-section h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
 
-                <!-- CARD 2 -->
-                <div class="produto-card">
-                    <div class="img-wrapper">
-                        <img class="produto-foto" src="https://unsplash.com" alt="Banana Orgânica">
-                        <span class="tag-regiao">Região: Macacos</span>
-                    </div>
-                    <div class="produto-info">
-                        <span class="produto-tag tag-fruta">Frutas Tropicais</span>
-                        <h3>Banana Caturra Agroflorestal</h3>
-                        <p>Nossas bananas crescem integradas à mata nativa, aproveitando a adubação natural das folhas que caem no chão da floresta. Sabor doce e puro.</p>
-                        <div class="card-footer">
-                            <span class="selo">Premium</span>
-                            <button class="btn-negociar">Negociar Direto</button>
-                        </div>
-                    </div>
-                </div>
+.hero-subtext {
+    font-size: 1.2rem;
+    color: #cbd5e1;
+    font-weight: 400;
+    margin-bottom: 35px;
+}
 
-                <!-- CARD 3 -->
-                <div class="produto-card">
-                    <div class="img-wrapper">
-                        <img class="produto-foto" src="https://unsplash.com" alt="Hortaliças">
-                        <span class="tag-regiao">Região: Ipanema</span>
-                    </div>
-                    <div class="produto-info">
-                        <span class="produto-tag tag-horta">Hortaliças</span>
-                        <h3>Mix de Folhas Hidropônicas</h3>
-                        <p>Cultivadas em estufas protegidas com circuito fechado de água. Economia gigante de recursos hídricos e folhas crocantes de verdade.</p>
-                        <div class="card-footer">
-                            <span class="selo">Agroecológico</span>
-                            <button class="btn-negociar">Negociar Direto</button>
-                        </div>
-                    </div>
-                </div>
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
 
-                <!-- CARD 4 -->
+.btn-primary {
+    background-color: #16a34a;
+    color: white;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover { background-color: #15803d; }
+
+.btn-secondary {
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* CARD DE NÚMEROS DE IMPACTO */
+.painel-estatisticas {
+    display: flex;
+    justify-content: space-around;
+    max-width: 900px;
+    margin: -40px auto 60px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 10;
+}
+
+.estatistica-item {
+    text-align: center;
+}
+
+.estatistica-item .num {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #15803d;
+}
+
+.estatistica-item .txt {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* SEÇÕES INFORMATIVAS PADRÃO (Espaçadas e fáceis de ler) */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    background: white;
+    padding: 50px;
+    border-radius: 20px;
+    margin-bottom: 50px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+    border: 1px solid #f1f5f9;
+}
+
+.section-header {
+    margin-bottom: 35px;
+}
+
+.sub-titulo {
+    color: #16a34a;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+section h2 {
+    font-size: 2rem;
+    color: #0f172a;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* LAYOUT EM 2 COLUNAS */
+.grid-dois-blocos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+.bloco-texto p {
+    font-size: 1.05rem;
+    color: #475569;
+    margin-bottom: 25px;
+    text-align: justify;
+}
+
+.bloco-destaque-verde {
+    background-color: #f0fdf4;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #dcfce7;
+}
+
+.bloco-destaque-verde h3 {
+    color: #14532d;
+    margin-bottom: 15px;
+    font-size: 1.25rem;
+}
+
+.lista-custom {
+    padding-left: 20px;
+}
+
+.lista-custom li {
+    margin-bottom: 15px;
+    color: #1e293b;
+    font-size: 1rem;
+}
+
+/* SEÇÃO DO SIMULADOR (Organizada) */
+.simulador-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px;
+    margin-top: 25px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    outline: none;
+    font-size: 1rem;
+}
+
+.btn-calculadora {
+    width: 100%;
+    background: #0f172a;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-calculadora:hover { background: #1e293b; }
+
+.simulador-resultados {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+}
+
+.resultado-card {
+    background: #f8fafc;
+    padding: 15px 25px;
+    border-radius: 10px;
+    border-left: 4px solid #16a34a;
+}
+
+.res-num {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.res-label {
+    font-size: 0.85rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* CATÁLOGO E BARRA DE BUSCA */
+.busca-wrapper {
+    margin-bottom: 40px;
+}
+
+#campo-busca {
+    width: 100%;
+    padding: 16px;
+    border-radius: 10px;
+    border: 2px solid #e2e8f0;
+    font-size: 1.05rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+#campo-busca:focus {
+    border-color: #16a34a;
+}
+
+/* CARDS DE PRODUTO SENSACIONAIS */
+.produtos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.produto-card {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    border: 1px solid #f1f5f9;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s;
+}
+
+.produto-card:hover {
+    transform: translateY(-5px);
+}
+
+.img-wrapper {
+    position: relative;
+    height: 180px;
+}
+
+.produto-foto {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tag-regiao {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(15, 23, 42, 0.8);
+    color: white;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    backdrop-filter: blur(2px);
+}
+
+.produto-info {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.produto-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 30px;
+    align-self: flex-start;
+    margin-bottom: 10px;
+}
+
+.tag-sustentavel { background: #dcfce7; color: #166534; }
+.tag-fruta { background: #fef9c3; color: #854d0e; }
+.tag-horta { background: #e0f2fe; color: #075985; }
+.tag-biodiv { background: #f3e8ff; color: #6b21a8; }
+
+.produto-info h3 {
+    font-size: 1.3rem;
+    color: #0f172a;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.produto-info p {
+    font-size: 0.95rem;
+    color: #64748b;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 15px;
+}
+
+.selo {
+    font-size: 0.8rem;
+    color: #475569;
+    font-weight: 600;
+}
+
+.btn-negociar {
+    background: #16a34a;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.btn-negociar:hover { background: #15803d; }
+
+/* RODAPÉ CLEAN */
+.footer-clean {
+    background: #0f172a;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.f-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.f-sub {
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+.f-divider {
+    height: 1px;
+    background: #334155;
+    max-width: 400px;
+    margin: 15px auto;
+}
+
+.f-creditos {
+    color: #64748b;
+    font-size: 0.8rem;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .painel-estatisticas { flex-direction: column; gap: 20px; margin-top: 20px; }
+    .hero-section h1 { font-size: 2.2rem; }
+    section { padding: 25px; }
+}
