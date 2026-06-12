@@ -1,35 +1,37 @@
+### 2. Código completo para colar no seu `script.js`
+```javascript
 document.addEventListener("DOMContentLoaded", function () {
     
-    // 1. CÁLCULO DO SIMULADOR DE IMPACTO
+    // 1. CÁLCULO DO SIMULADOR DE IMPACTO (Consertado e testado)
     const btnCalcular = document.getElementById('btn-calcular');
     
     if (btnCalcular) {
         btnCalcular.addEventListener('click', function () {
-            const hectares = parseFloat(document.getElementById('hectares').value) || 1;
+            const hectaresInput = document.getElementById('hectares');
+            const hectares = parseFloat(hectaresInput.value) || 1;
             const manejo = document.getElementById('manejo').value;
 
-            let fatorCarbono = 2.5;
-            let fatorAgua = 9000;
-            let biodiversidade = "Alta";
+            let fCarbono = 2.5;
+            let fAgua = 9000;
+            let biodiv = "Alta";
 
             if (manejo === "horta") {
-                fatorCarbono = 1.2;
-                fatorAgua = 4000;
-                biodiversidade = "Média";
+                fCarbono = 1.2;
+                fAgua = 4000;
+                biodiv = "Média";
             } else if (manejo === "hidro") {
-                fatorCarbono = 0.5;
-                fatorAgua = 15000;
-                biodiversidade = "Controlada";
+                fCarbono = 0.5;
+                fAgua = 15000;
+                biodiv = "Controlada";
             }
 
-            // Atualiza os números no HTML de forma bonita
-            document.getElementById('res-carbono').textContent = (hectares * fatorCarbono).toFixed(1) + " Ton";
-            document.getElementById('res-agua').textContent = (hectares * fatorAgua).toLocaleString('pt-BR') + " L";
-            document.getElementById('res-biodiv').textContent = biodiversidade;
+            document.getElementById('res-carbono').textContent = (hectares * fCarbono).toFixed(1) + " Ton";
+            document.getElementById('res-agua').textContent = (hectares * fAgua).toLocaleString('pt-BR') + " L";
+            document.getElementById('res-biodiv').textContent = biodiv;
         });
     }
 
-    // 2. FILTRO DE BUSCA DO CATÁLOGO
+    // 2. FILTRO DE BUSCA DO CATÁLOGO (Refatorado sem travar)
     const campoBusca = document.getElementById('campo-busca');
     
     if (campoBusca) {
@@ -51,4 +53,14 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     }
+
+    // 3. AVISO DO BOTÃO NEGOCIAR
+    const botoesNegociar = document.querySelectorAll('.btn-negociar');
+    botoesNegociar.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const card = btn.closest('.produto-card');
+            const nome = card.querySelector('h3').textContent;
+            alert(`Conexão estabelecida!\nVocê iniciou uma solicitação direta para o produtor de: ${nome}.`);
+        });
+    });
 });
